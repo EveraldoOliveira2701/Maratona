@@ -6,8 +6,8 @@ module.exports = {
         return res.render("job")
     },
     save(req, res){
-        const jobs = Job.get()
-        const lastId = jobs[jobs.length - 1]?.id || 0;
+    const jobs = Job.get()
+    let lastId = jobs[jobs.length -1]?.id || 0;       
 jobs.push({
     id: lastId + 1,
     name: req.body.name,
@@ -35,7 +35,7 @@ return res.redirect('/')
         if (!job) {
            return res.send('Job not found!') 
         }
-        const updatedJob ={
+        const updatedJob = {
             ...job,
             name: req.body.name,
             "total-hours": req.body["total-hours"],
@@ -48,7 +48,7 @@ return res.redirect('/')
             return job
         })
         Job.update(newJobs)
-        res.redirect('/job/' + jobId) 
+        res.redirect('/') 
     },
     delete(req, res){
         const jobId = req.params.id

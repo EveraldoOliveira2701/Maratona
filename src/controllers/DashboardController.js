@@ -1,18 +1,21 @@
-const Job = require('../model/job')
+const Job = require('../model/Job')
 const JobUtils = require('../utils/JobUtils')
 const Profile = require('../model/Profile')
 module.exports = {
-    index(req,res){
+    index(req, res){
         const jobs = Job.get();
         const profile = Profile.get();
-        const statusCount = {
+        let statusCount = {
             progress: 0,
             done: 0,
             total: jobs.length //leitura de quantidade de jobs dentro do array
         }
         const updatedJobs = jobs.map((job) => {
         const remaining = JobUtils.remainingDays(job)
-        const status = remaining <= 0 ? 'done' : 'progress'
+        const status = remaining <= 0 ? 'done' : 'progress';
+        //somando a quantidade de status
+        statusCount[status] += 1;
+
         return {
         ...job,
         remaining,
