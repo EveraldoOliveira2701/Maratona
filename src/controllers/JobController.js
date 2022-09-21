@@ -6,16 +6,16 @@ module.exports = {
         return res.render("job")
     },
     save(req, res){
-    const jobs = Job.get()
-    let lastId = jobs[jobs.length -1]?.id || 0;       
-jobs.push({
-    id: lastId + 1,
-    name: req.body.name,
-    "daily-hours": req.body["daily-hours"],
-    "total-hours": req.body["total-hours"],
-    createdAt: Date.now()
-})
-return res.redirect('/')
+        const jobs = Job.get()
+        let lastId = jobs[jobs.length -1]?.id || 0;       
+       Job.create({
+        id: lastId + 1,
+            name: req.body.name,
+            "daily-hours": req.body["daily-hours"],
+            "total-hours": req.body["total-hours"],
+            createdAt: Date.now()
+        });        
+        return res.redirect('/')
     },
     show(req, res){
         const jobId = req.params.id
@@ -52,7 +52,7 @@ return res.redirect('/')
     },
     delete(req, res){
         const jobId = req.params.id
-       Job.delete(jobId)
+        Job.delete(jobId)
         return res.redirect("/")
     }
 }
