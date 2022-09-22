@@ -37,8 +37,8 @@
         <img src="<%= profile.avatar %>"  alt="<%= profile.nome %> ">
         <h2><%= profile.name%></h2>
         <p>
-          O valor da sua hora é <br/>
-          <strong>R$ <%= profile["value-hour"].toFixed(2).replace(".", ",") %> </strong>
+          <br>O valor da sua hora é <br/>
+          <strong>R$<%= profile["value-hour"].toFixed(2).replace(".", ",") %> </strong>
         </p>
         <button class="button green" form="form-profile" type="submit">Salvar dados</button>
       </aside>
@@ -52,7 +52,10 @@
             <div class="input-group">
               <div class="input-wrapper">
                 <label for="name">Nome</label>
-                <input type="text" id="name" name="name"  valeu="<%= profile.nome %> " />
+                <input type="text"
+                  id="name"
+                  name="name"
+                  value="<%= profile.name %> " />
               </div>
 
               <div class="input-wrapper">
@@ -90,7 +93,7 @@
                   type="number"
                   id="hours-per-day" 
                   name="hours-per-day" 
-                  value="<%= profile["hours-per-day"] %> "/>
+                  value="<%= profile["hours-per-day"]%> " />
               </div>
             </div>
 
